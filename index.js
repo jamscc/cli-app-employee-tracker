@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const ViewData = require('./lib/viewData');
 const InsertData = require('./lib/insertData');
+const UpdateData = require('./lib/updateData');
 
 // options - see prompt 
 const optionSel = [
@@ -10,6 +11,7 @@ const optionSel = [
     'Add a department',
     'Add a role',
     'Add an employee',
+    'Update an employee role',
     'Done'
 ];
 
@@ -45,6 +47,7 @@ function promptsDisplay() {
             // view, insert 
             const viewData = new ViewData(resp.options, promptsDisplay);
             const insertData = new InsertData(promptsDisplay);
+            const updateData = new UpdateData(promptsDisplay);
             
             switch (resp.options) {
                 case ('View all departments'):
@@ -65,6 +68,9 @@ function promptsDisplay() {
                 case ('Add an employee'):
                     insertData.addEmployee();
                     break;    
+                case ('Update an employee role'):
+                    updateData.updateRole();
+                    break;
                 default:
                     // end tracker
                     endTracker();
