@@ -12,6 +12,7 @@ const optionSel = [
     'Add a role',
     'Add an employee',
     'Update an employee role',
+    "View a department's total utilized budget",
     'Done'
 ];
 
@@ -44,7 +45,7 @@ function promptsDisplay() {
 
     ])
         .then((resp) => {
-            // view, insert 
+            // view, insert, or update 
             const viewData = new ViewData(resp.options, promptsDisplay);
             const insertData = new InsertData(promptsDisplay);
             const updateData = new UpdateData(promptsDisplay);
@@ -70,6 +71,9 @@ function promptsDisplay() {
                     break;    
                 case ('Update an employee role'):
                     updateData.updateRole();
+                    break;
+                case ("View a department's total utilized budget"):
+                    viewData.viewBudget();
                     break;
                 default:
                     // end tracker
